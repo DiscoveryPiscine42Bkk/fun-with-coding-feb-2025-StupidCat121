@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+</head>
+
+<body>
+    <h2>Basic Calculator</h2>
+    <input type="text" id="leftOperand" placeholder="Enter number">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="rightOperand" placeholder="Enter number">
+    <input type="submit" id="calculate" value="Try me!">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#calculate").click(function () {
+                let left = parseFloat($("#leftOperand").val());
+                let right = parseFloat($("#rightOperand").val());
+                let operator = $("#operator").val();
+
+                if (isNaN(left) || isNaN(right) || left < 0 || right < 0 || !(left % 1 === 0) || !(right % 1 === 0)) {
+                    alert("Error :(");
+                    return;
+                }
+
+                if ((operator === '/' || operator === '%') && right === 0) {
+                    alert("It's over 9000!");
+                    console.log("It's over 9000!");
+                    return;
+                }
+
+                let result;
+                switch (operator) {
+                    case '+': result = left + right; break;
+                    case '-': result = left - right; break;
+                    case '*': result = left * right; break;
+                    case '/': result = left / right; break;
+                    case '%': result = left % right; break;
+                }
+
+                alert("Result: " + result);
+                console.log("Result: " + result);
+            });
+        });
+
+        setInterval(() => {
+            alert("Please, use me...");
+        }, 30000);
+    </script>
+</body>
+
+</html>
